@@ -14,7 +14,6 @@ const Recipe = require('../models/recipe');
 
 // POST - store a new recipe
 router.post('/post', async (req, res) => {
-
     try {
         const recipes = database.collection("recipes");
         const data = new Recipe({
@@ -27,9 +26,7 @@ router.post('/post', async (req, res) => {
             ingredients: req.body.ingredients,
             instructions: req.body.instructions
         })
-
         const result = await recipes.insertOne(data);
-
         res.status(200).json(result)
     }
     catch (error) {
