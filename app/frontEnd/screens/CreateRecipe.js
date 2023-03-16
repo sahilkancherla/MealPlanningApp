@@ -1,11 +1,24 @@
-
-import { StyleSheet, Text, View } from 'react-native';
+/* eslint-disable react/jsx-filename-extension */
+import {
+  Text, View, Button,
+} from 'react-native';
 import * as React from 'react';
+import apiClient from '../http-common';
 
+export default function CreateRecipe({ route, navigation }) {
+  const { itemId } = route.params;
 
-export default function CreateRecipe({ navigation }) {
-    return (
-        <Text>Create Recipe</Text>
-      
-    );
-  }
+  return (
+    <View>
+      <Text>
+        {itemId}
+      </Text>
+      <Button
+        title="Go to Home"
+        onPress={() => navigation.navigate('Home')}
+      />
+
+    </View>
+
+  );
+}

@@ -12,6 +12,36 @@ const router = express.Router()
 // recipe schema
 const Recipe = require('../models/recipe');
 
+const  ObjectId = require('mongodb').ObjectId;
+
+
+// GET - get all recipes
+
+router.get('/getRecipes', async (req, res) => {
+    try{
+        const recipes = database.collection("recipes");
+        const data = await recipes.find().toArray();
+        res.send(data);
+    } catch (error) {
+        res.status(400).json({message: error.message})
+    }
+    
+  });
+
+// GET - get one recipe using id
+router.get('/getRecipe', async (req, res) => {
+    try{
+        const recipes = database.collection("recipes");
+        const id = req.query.id;
+        const data = await recipes.findOne({ _id: new ObjectId(id) });
+        res.send(data);
+    } catch (error) {
+        res.status(400).json({message: error.message})
+    }
+    
+  });
+
+
 // POST - store a new recipe
 router.post('/post', async (req, res) => {
     try {
