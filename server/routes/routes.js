@@ -43,7 +43,7 @@ router.get('/getRecipe', async (req, res) => {
 
 
 // POST - store a new recipe
-router.post('/post', async (req, res) => {
+router.post('/postRecipe', async (req, res) => {
     try {
         const recipes = database.collection("recipes");
         const data = new Recipe({

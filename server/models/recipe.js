@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const ingredientSchema = new mongoose.Schema({
-    name: {
+    ingredientName: {
         required: true,
         type: String
     },
@@ -21,7 +21,7 @@ const instructionSchema = new mongoose.Schema({
         required: true,
         type: Number
     },
-    description: {
+    instructionDescription: {
         required: true,
         type: String
     },

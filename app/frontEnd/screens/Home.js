@@ -22,7 +22,7 @@ export default function Home({ navigation }) {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [responseData]);
 
   return (
     <View style={{ padding: 20 }}>
@@ -51,6 +51,12 @@ export default function Home({ navigation }) {
 
       </View>
 
+      <Button
+        title="Create new recipe"
+        onPress={() => {
+          navigation.navigate('CreateRecipe');
+        }}
+      />
     </View>
 
   );
