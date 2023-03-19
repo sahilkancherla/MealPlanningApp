@@ -12,7 +12,7 @@ const queryClient = new QueryClient();
 function RecipeDetails({ route, navigation }) {
   const [responseData, setResponseData] = useState(null);
 
-  // get all recipes data
+  // get single recipe data
   const getData = async () => {
     axios.get('http://localhost:3000/api/getRecipe', {
       params: {
