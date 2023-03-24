@@ -9,10 +9,12 @@ const database = mongoose.connection;
 // to get routes
 const router = express.Router()
 
-const groceryHelper = require('../buildList.js');
+const groceryHelper = require('../helperFunctions/buildList.js');
+
 
 // recipe schema
 const Recipe = require('../models/recipe');
+const { rawListeners } = require('../models/recipe');
 
 const  ObjectId = require('mongodb').ObjectId;
 
@@ -44,20 +46,14 @@ router.get('/getRecipe', async (req, res) => {
   });
 
 // GET - compiles grocery list
-router.get('/getSum', async (req, res) => {
+router.get('/getGroceryList', async (req, res) => {
     try{
-        const a = {
-            name: "Sahil"
-        };
-        const b = {
-            name: "Sahil"
-        };
-        const c = {
-            name: "Gabe"
-        };
-        
-        const arr = [a, b, c]
-        res.send(groceryHelper.calculateTotalList(arr));
+        const arr = req.query.meals;
+        console.log(arr)
+        const data = groceryHelper.calculateTotalList(arr);
+        res.send(data);
+
+
     } catch (error) {
         res.status(400).json({message: error.message})
     }

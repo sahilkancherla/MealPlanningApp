@@ -12,8 +12,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from './screens/Home';
 import CreateRecipe from './screens/CreateRecipe';
+import CreateRecipeFromLink from './screens/CreateRecipeFromLink';
+
+import Discover from './screens/Discover';
+
 import RecipeDetails from './screens/RecipeDetails';
 import WeeklySchedule from './screens/WeeklySchedule';
+import GroceryList from './screens/GroceryList';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,26 +36,20 @@ function HomeStack() {
         name="Home"
         component={Home}
       />
+      <Stack.Screen name="Discover" component={Discover} />
+
       <Stack.Screen name="CreateRecipe" component={CreateRecipe} />
+      <Stack.Screen name="CreateRecipeFromLink" component={CreateRecipeFromLink} />
+
       <Stack.Screen name="RecipeDetails" component={RecipeDetails} />
-
-    </Stack.Navigator>
-  );
-}
-
-function WeeklyScheduleStack() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-      initialRouteName="WeeklySchedule"
-    >
       <Stack.Screen
-        name="WeeklyScedule"
+        name="WeeklySchedule"
         component={WeeklySchedule}
       />
-
+      <Stack.Screen
+        name="GroceryList"
+        component={GroceryList}
+      />
     </Stack.Navigator>
   );
 }
@@ -59,11 +58,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeStack} />
-          <Tab.Screen name="Weekly Schedule" component={WeeklySchedule} />
-
-        </Tab.Navigator>
+        {HomeStack()}
       </NavigationContainer>
 
     </QueryClientProvider>

@@ -65,6 +65,7 @@ export default function CreateRecipe({ navigation }) {
       newInstruction,
     ];
     onChangeInstructions(updateInstructions);
+    onChangeStepNumber(stepNumber + 1);
   };
 
   // make new recipe

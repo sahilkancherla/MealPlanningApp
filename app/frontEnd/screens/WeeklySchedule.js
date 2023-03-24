@@ -7,12 +7,9 @@ import {
 import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import SideBar from '../components/SideBar';
 
 export default function WeeklySchedule({ navigation }) {
-  const [breakfast, setBreakfast] = React.useState(null);
-  const [lunch, onChangeLunch] = React.useState('Nothing selected');
-  const [dinner, onChangeDinner] = React.useState('Nothing selected');
-
   const [meals, setMeals] = useState(Array.from({ length: 7 }, () => Array.from({ length: 3 }, () => null)));
 
   const [currRow, setCurrRow] = useState(0);
@@ -167,17 +164,34 @@ export default function WeeklySchedule({ navigation }) {
   }, [responseData]);
 
   return (
-    <ScrollView style={{ padding: 20 }}>
+    <View style={{ flexDirection: 'row', height: '100%' }}>
+      <SideBar currScreen="Meal Plan" navigation={navigation} />
+      <ScrollView>
 
-      {displayDay('Sunday', 0)}
-      {displayDay('Monday', 1)}
-      {displayDay('Tuesday', 2)}
-      {displayDay('Wednesday', 3)}
-      {displayDay('Thursday', 4)}
-      {displayDay('Friday', 5)}
-      {displayDay('Saturday', 6)}
-      {displayModal()}
-    </ScrollView>
+        {displayDay('Sunday', 0)}
+        {displayDay('Monday', 1)}
+        {displayDay('Tuesday', 2)}
+        {displayDay('Wednesday', 3)}
+        {displayDay('Thursday', 4)}
+        {displayDay('Friday', 5)}
+        {displayDay('Saturday', 6)}
+        {displayModal()}
+        <View style={{ width: 500, margin: 20, justifyContent: 'center' }}>
+          <Button
+            title="Create List"
+            onPress={() => {
+            /* 1. Navigate to the Details route with params */
+              console.log(meals);
+              navigation.navigate('GroceryList', {
+                meals,
+
+              });
+            }}
+          />
+
+        </View>
+      </ScrollView>
+    </View>
 
   );
 }
